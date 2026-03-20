@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Claude Code Notify - Installation Script
+# Claude Code Notify - macOS Installation Script
 # https://github.com/aashutosh-sahni/claude-code-notify
 
 set -e
@@ -8,7 +8,7 @@ set -e
 INSTALL_DIR="$HOME/.claude-code-notify"
 REPO_URL="https://github.com/aashutosh-sahni/claude-code-notify.git"
 
-echo "Installing Claude Code Notify..."
+echo "Installing Claude Code Notify (macOS)..."
 
 # Clone or update
 if [ -d "$INSTALL_DIR" ]; then
@@ -20,8 +20,8 @@ else
 fi
 
 # Make scripts executable
-chmod +x "$INSTALL_DIR/notify.sh"
-chmod +x "$INSTALL_DIR/hooks/"*.sh
+chmod +x "$INSTALL_DIR/macos/notify.sh"
+chmod +x "$INSTALL_DIR/macos/hooks/"*.sh
 
 echo ""
 echo "Installed to $INSTALL_DIR"
@@ -37,7 +37,7 @@ cat << 'CONFIG'
         "hooks": [
           {
             "type": "command",
-            "command": "~/.claude-code-notify/hooks/notify-permission.sh"
+            "command": "~/.claude-code-notify/macos/hooks/notify-permission.sh"
           }
         ]
       }
@@ -47,7 +47,7 @@ cat << 'CONFIG'
         "hooks": [
           {
             "type": "command",
-            "command": "~/.claude-code-notify/hooks/notify-stop.sh"
+            "command": "~/.claude-code-notify/macos/hooks/notify-stop.sh"
           }
         ]
       }
