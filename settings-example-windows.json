@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "~/.claude-code-notify/macos/hooks/notify-permission.sh"
+            "command": "powershell -ExecutionPolicy Bypass -File \"~/.claude-code-notify/windows/hooks/notify-permission.ps1\""
           }
         ]
       }
@@ -16,7 +16,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "~/.claude-code-notify/macos/hooks/notify-stop.sh"
+            "command": "powershell -ExecutionPolicy Bypass -File \"~/.claude-code-notify/windows/hooks/notify-stop.ps1\""
           }
         ]
       }
