@@ -1,11 +1,8 @@
 #!/bin/bash
 
 # Claude Code Notification Script
-# Version: 1.0.0
-# https://github.com/aashutosh-sahni/claude-code-notify
-#
 # Sends native macOS notifications with click-to-focus support
-# Supports: Terminal.app, iTerm2, Ghostty, tmux
+# Supports: Terminal.app, Ghostty, tmux
 #
 # Usage: ./notify.sh [title] [message] [sound]
 #   title:   Notification title (default: "Claude Code")
@@ -36,19 +33,15 @@ else
   fi
 fi
 
-# Handle Ghostty - uses native OSC 777 notifications
+# Handle Ghostty first - uses native OSC 777 notifications
 if [ "$TERMINAL_APP" = "ghostty" ]; then
   # Ghostty handles click-to-focus automatically via OSC 777
   # No external dependencies needed!
-  printf '\033]777;notify;%s;%s\007' "$TITLE" "$MESSAGE" > "$MY_TTY"
-  exit 0
-fi
+  # Note: Ghostty plays its own notification sound
 
-# Handle iTerm2 - uses native OSC 9 notifications
-if [ "$TERMINAL_APP" = "iTerm.app" ]; then
-  # iTerm2 handles click-to-focus automatically via OSC 9
-  # No external dependencies needed!
-  printf '\033]9;%s\007' "$MESSAGE" > "$MY_TTY"
+  # Send OSC 777 notification directly to the TTY
+  printf '\033]777;notify;%s;%s\007' "$TITLE" "$MESSAGE" > "$MY_TTY"
+
   exit 0
 fi
 
